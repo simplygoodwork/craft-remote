@@ -1,0 +1,17 @@
+{
+  "src/index-legacy.js": {
+    "file": "assets/app-legacy.1302050e.js",
+    "src": "src/index-legacy.js",
+    "isEntry": true
+  },
+  "vite/legacy-polyfills": {
+    "file": "assets/polyfills-legacy.740b7e2f.js",
+    "src": "vite/legacy-polyfills",
+    "isEntry": true
+  },
+  "src/index.js": {
+    "file": "assets/app.2efb497a.js",
+    "src": "src/index.js",
+    "isEntry": true
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "remote",
+  "version": "1.0.0",
+  "description": "Send your Craft \"telemetry\" like versions, installed plugins, and more to Airtable.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-legacy": "^1.8.1",
+    "alpinejs": "^3.10.0",
+    "tailwindcss": "^3.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.5",
+    "vite": "^2.5.4"
+  }
+}
