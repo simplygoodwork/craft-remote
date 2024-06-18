@@ -1,0 +1,89 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Remote plugin for Craft CMS 3.x
+ *
+ * Remote Settings.twig
+ *
+ * @author    Good Work
+ * @copyright Copyright (c) 2022 Good Work
+ * @link      https://simplygoodwork.com
+ * @package   Remote
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+{#{% import "codeeditor/codeEditor" as codeEditor %}#}
+
+{% set scriptTagOptions = {
+    'depends': [
+        'simplygoodwork\\remote\\assetbundles\\remote\\RemoteAsset'
+    ],
+} %}
+
+{% if craft.remote.useVite %}
+    {{ craft.remote.register('src/index.js', false, scriptTagOptions) }}
+{% endif %}
+
+<div>
+    {{ forms.autosuggestField({
+        label: 'Remote API Key',
+        instructions: 'Your Remote API key',
+        id: 'apiKey',
+        name: 'apiKey',
+        value: settings['apiKey'],
+        suggestEnvVars: true,
+        required: false,
+        warning: _self.configWarning("apiKey", "remote"),
+        placeholder: "$REMOTE_API_KEY",
+    }) }}
+</div>
+<br/>
+<div>
+    {{ forms.textareaField({
+        label: 'Notes',
+        instructions: 'Additional notes regarding this site or its setup',
+        id:'notes',
+        name: 'notes',
+        value: settings['notes'],
+        required: false,
+        warning: _self.configWarning("notes", "remote"),
+    }) }}
+</div>
+{#{% set codeEditorOptions = {#}
+{#    language: "json",#}
+{#    theme: "vs-dark",#}
+{#    automaticLayout: true,#}
+{#    formatOnType: true,#}
+{#    formatOnPaste: true,#}
+{#    formatOnSave: true,#}
+{#    lineNumbers: false,#}
+{#} %}#}
+{#<div id="host-editor-wrapper" data-autocomplete-endpoint="{{ alias('@codeEditorEndpointUrl') }}" data-code-editor-options="{{ codeEditorOptions|json_encode }}" data-allowed-host-keys="{{ settings.getAllowedHostKeys()|keys|json_encode }}" class="">#}
+
+{#    {{ codeEditor.textareaField#}
+{#        ({#}
+{#            label: "Host Information"|t,#}
+{#            instructions: "Hosting information for your site"|t,#}
+{#            id: "host-code-editor",#}
+{#            name: "host",#}
+{#            errors: settings.getErrors('host'),#}
+{#            warning: _self.configWarning("host", "remote"),#}
+{#            value: settings['host']|json_encode(constant('JSON_PRETTY_PRINT')),#}
+{#        },#}
+{#        "HostField",#}
+{#        codeEditorOptions)#}
+{#    }}#}
+{#</div>#}
+
+
+{# Credit to nystudio107 for this handy snippet #}
+{% macro configWarning(setting, file) -%}
+  {%- set configArray = craft.app.config.getConfigFromFile(file) -%}
+  {%- if configArray[setting] is defined -%}
+      {{- "This is being overridden by the `#{setting}` setting in the `config/#{file}.php` file." |raw }}
+  {%- else -%}
+      {{ false }}
+  {%- endif -%}
+{%- endmacro %}

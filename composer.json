@@ -1,0 +1,49 @@
+{
+    "name": "simplygoodwork/craft-remote",
+    "description": "Send your Craft site's telemetry like versions, installed plugins, and more to the third-party Craft Remote service.",
+    "type": "craft-plugin",
+    "version": "3.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "remote",
+        "craft-remote"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Good Work",
+            "homepage": "https://simplygoodwork.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+          "simplygoodwork\\remote\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "craftcms/cms": "^3.0.0",
+        "nystudio107/craft-plugin-vite": "^1.0.31"
+    },
+    "extra": {
+        "name": "Craft Remote",
+        "handle": "remote",
+        "developer": "Good Work",
+        "developerUrl": "https://simplygoodwork.com",
+        "components": {
+            "sync": "simplygoodwork\\remote\\services\\Sync"
+        },
+        "class": "simplygoodwork\\remote\\Remote"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "craftcms/plugin-installer": true
+        }
+    }
+}
