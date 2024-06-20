@@ -107,6 +107,11 @@ class Packet extends Model
      */
     public $plugins;
 
+	/**
+	 * @var array
+	 */
+	public $modules;
+
     /**
      * @var array
      */
@@ -150,6 +155,7 @@ class Packet extends Model
         $config['craftEdition'] = App::editionName(Craft::$app->getEdition());
         $config['phpVersion'] = App::phpVersion();
         $config['plugins'] = $this->_getPlugins();
+		$config['modules'] = $this->_getModules();
         $config['cms'] = $this->_getCmsUpdates();
         $config['updates'] = $this->_getUpdateSummary();
 		$config['host'] = $this->_getHostInfo();
@@ -288,6 +294,21 @@ class Packet extends Model
 
         return $plugins;
     }
+
+	private function _getModules(): array
+	{
+		$modules = Craft::$app->getModules(true);
+		$data = [];
+		foreach ($modules as $namespace => $module) {
+			if(str_contains(get_class($module), 'modules\\')){
+				$data[] = [
+					'name' => $module->id,
+					'namespace' => get_class($module),
+				];
+			}
+		}
+		return $data;
+	}
 
     private function _getCmsUpdates(): array
     {
