@@ -12,7 +12,6 @@ namespace simplygoodwork\remote\models;
 
 use craft\behaviors\EnvAttributeParserBehavior;
 use craft\helpers\Json;
-use simplygoodwork\remote\behaviors\JsonParsingBehavior;
 use craft\helpers\App;
 use craft\helpers\StringHelper;
 use simplygoodwork\remote\Remote;
@@ -80,7 +79,7 @@ class Settings extends Model
 	/**
 	 * @var array
 	 */
-	public $host;
+	public $host = [];
 
 	// Public Methods
 	// =========================================================================
@@ -107,8 +106,8 @@ class Settings extends Model
 	public function rules()
 	{
 		return [
-			[['apiKey'], 'string'],
-			[['apiKey'], 'required'],
+			[['apiKey'], 'string', 'message' => 'API Key must be a string. If you\'re using an Environment Variable, make sure it is set in the .env file and not empty.'],
+			[['apiKey'], 'required', 'message' => 'API Key must be a string. If you\'re using an Environment Variable, make sure it is set in the .env file and not empty.'],
 			[['host'], 'validateHost']
 		];
 	}
@@ -116,6 +115,10 @@ class Settings extends Model
 	public function validateHost($attribute, $params)
 	{
 		$value = $this->$attribute;
+
+		if(empty($value)){
+			return;
+		}
 
 		if (!is_array($value)) {
 			$value = Json::decodeIfJson($value);
