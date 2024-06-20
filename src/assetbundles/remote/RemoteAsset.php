@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2024 Good Work
  */
 
-namespace simplygoodwork\remote\assetbundles\Remote;
+namespace simplygoodwork\remote\assetbundles\remote;
 
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
