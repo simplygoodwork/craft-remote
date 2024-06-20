@@ -37,6 +37,7 @@
         required: false,
         warning: _self.configWarning("apiKey", "remote"),
         placeholder: "$REMOTE_API_KEY",
+        errors: settings.getErrors('apiKey')
     }) }}
 </div>
 
@@ -51,6 +52,7 @@
         value: settings['notes'],
         required: false,
         warning: _self.configWarning("notes", "remote"),
+        errors: settings.getErrors('notes')
     }) }}
 </div>
 
