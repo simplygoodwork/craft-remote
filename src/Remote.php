@@ -10,26 +10,17 @@
 
 namespace simplygoodwork\remote;
 
-use nystudio107\codeeditor\autocompletes\EnvironmentVariableAutocomplete;
-use nystudio107\codeeditor\events\RegisterCodeEditorAutocompletesEvent;
-use nystudio107\codeeditor\services\AutocompleteService;
 use simplygoodwork\remote\assetbundles\remote\RemoteAsset;
-use simplygoodwork\remote\autocompletes\HostVariableAutocomplete;
-use simplygoodwork\remote\services\Sync as SyncService;
 use simplygoodwork\remote\variables\RemoteVariable;
 use simplygoodwork\remote\models\Settings;
-use simplygoodwork\remote\utilities\RemoteSync as RemoteSyncUtility;
 
 use Craft;
 use craft\base\Plugin;
 use craft\console\Application as ConsoleApplication;
-use craft\services\Utilities;
 use craft\web\twig\variables\CraftVariable;
-use craft\events\RegisterComponentTypesEvent;
 
 use yii\base\Event;
 
-//use nystudio107\pluginvite\services\VitePluginService;
 
 /**
  *
@@ -37,7 +28,6 @@ use yii\base\Event;
  * @package   Remote
  * @since     1.0.0
  *
- * @property  SyncService $sync
  * @property  Settings $settings
  * @method    Settings getSettings()
  */
@@ -114,21 +104,10 @@ class Remote extends Plugin
 //			self::$useVite = true;
 //		}
 
-        $this->_registerComponents();
-
         // Add in our console commands
         if (Craft::$app instanceof ConsoleApplication) {
             $this->controllerNamespace = 'simplygoodwork\remote\console\controllers';
         }
-
-        // Register our utilities
-        Event::on(
-            Utilities::class,
-            Utilities::EVENT_REGISTER_UTILITY_TYPES,
-            function (RegisterComponentTypesEvent $event) {
-                $event->types[] = RemoteSyncUtility::class;
-            }
-        );
 
 //		Event::on(
 //	    AutocompleteService::class,
@@ -188,14 +167,4 @@ class Remote extends Plugin
         );
     }
 
-  /**
-   * Registers components.
-   */
-  private function _registerComponents()
-  {
-    // Register services as components
-    $this->setComponents([
-      'sync' => SyncService::class,
-    ]);
-  }
 }
