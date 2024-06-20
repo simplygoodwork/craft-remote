@@ -42,46 +42,46 @@ use yii\web\NotFoundHttpException;
 class DataController extends Controller
 {
 
-    // Protected Properties
-    // =========================================================================
+	// Protected Properties
+	// =========================================================================
 
-    /**
-     * @var    bool|array Allows anonymous access to this controller's actions.
-     *         The actions must be in 'kebab-case'
-     * @access protected
-     */
-    protected $allowAnonymous = ['index'];
+	/**
+	 * @var    bool|array Allows anonymous access to this controller's actions.
+	 *         The actions must be in 'kebab-case'
+	 * @access protected
+	 */
+	protected $allowAnonymous = ['index'];
 
-    /**
-     * @throws NotFoundHttpException
-     */
-    public function actionIndex()
-    {
-        if(!$this->_auth()) {
-            throw new NotFoundHttpException();
-        }
+	/**
+	 * @throws NotFoundHttpException
+	 */
+	public function actionIndex()
+	{
+		if (!$this->_auth()) {
+			throw new NotFoundHttpException();
+		}
 
-        $packet = new Packet();
+		$packet = new Packet();
 
-        return $this->asJson($packet);
-    }
+		return $this->asJson($packet);
+	}
 
-    private function _auth()
-    {
+	private function _auth()
+	{
 		$request = Craft::$app->getRequest();
-        $headers = $request->getHeaders();
-        $token = $headers->get('X-REMOTE-KEY');
+		$headers = $request->getHeaders();
+		$token = $headers->get('X-REMOTE-KEY');
 
-        if(!$token) {
-            return false;
-        }
+		if (!$token) {
+			return false;
+		}
 
-        $pluginKey = Helpers::parseEnv(Remote::$plugin->getSettings()->apiKey);
+		$pluginKey = Helpers::parseEnv(Remote::$plugin->getSettings()->apiKey);
 
-        if(!$pluginKey || $pluginKey !== $token) {
-            return false;
-        }
+		if (!$pluginKey || $pluginKey !== $token) {
+			return false;
+		}
 
-        return true;
-    }
+		return true;
+	}
 }
