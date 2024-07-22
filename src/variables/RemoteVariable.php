@@ -1,6 +1,6 @@
 <?php
 /**
- * Remote plugin for Craft CMS 4.x
+ * Remote plugin for Craft CMS 5.x
  *
  * An internal project tracking tool.
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Remote plugin for Craft CMS 4.x
+ * Remote plugin for Craft CMS 5.x
  *
  * Send your Craft site's telemetry like versions, installed plugins, and more to the third-party Craft Remote service.
  *
