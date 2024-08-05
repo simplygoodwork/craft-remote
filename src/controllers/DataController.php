@@ -41,9 +41,15 @@ class DataController extends Controller
 
     /**
      * @return Response
+     * @throws NotFoundHttpException
      */
     public function actionIndex(): Response
     {
+
+        if (!$this->_auth()) {
+            throw new NotFoundHttpException();
+        }
+
         try {
             $packet = new Packet();
             return $this->asJson($packet);
