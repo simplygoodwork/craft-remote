@@ -2,7 +2,7 @@
     "name": "simplygoodwork/craft-remote",
     "description": "Send your Craft site's telemetry like versions, installed plugins, and more to the third-party Craft Remote service.",
     "type": "craft-plugin",
-    "version": "4.0.1",
+    "version": "4.0.2",
     "keywords": [
         "craft",
         "cms",
