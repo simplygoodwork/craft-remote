@@ -1,5 +1,9 @@
 # Craft Remote
 
-## 4.0.0 - 2024-06-18
+## 5.0.1 - 2024-08-10
 ### Added
-- Initial Craft 4.0 release
+- Add controller auth
+
+## 5.0.0 - 2024-06-18
+### Added
+- Initial Craft 5.0 release

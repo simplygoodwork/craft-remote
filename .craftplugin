@@ -1,7 +1,7 @@
 {
   "pluginName": "Remote",
   "pluginDescription": "Send your Craft site's telemetry like versions, installed plugins, and more to the third-party Craft Remote service.",
-  "pluginVersion": "4.0.0",
+  "pluginVersion": "5.0.1",
   "pluginAuthorName": "Good Work",
   "pluginVendorName": "simplygoodwork",
   "pluginAuthorUrl": "https://simplygoodwork.com",
