@@ -300,7 +300,7 @@ class Packet extends Model
 		$modules = Craft::$app->getModules(true);
 		$data = [];
 		foreach ($modules as $namespace => $module) {
-			if(str_contains(get_class($module), 'modules\\')){
+			if(mb_strpos(get_class($module), 'modules\\') !== false){
 				$data[] = [
 					'name' => $module->id,
 					'namespace' => get_class($module),
