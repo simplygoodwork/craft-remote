@@ -2,7 +2,7 @@
     "name": "simplygoodwork/craft-remote",
     "description": "Send your Craft site's telemetry like versions, installed plugins, and more to the third-party Craft Remote service.",
     "type": "craft-plugin",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "keywords": [
         "craft",
         "cms",
@@ -31,7 +31,7 @@
         "nystudio107/craft-plugin-vite": "^1.0.31"
     },
     "extra": {
-        "name": "Craft Remote",
+        "name": "Remote",
         "handle": "remote",
         "developer": "Good Work",
         "developerUrl": "https://simplygoodwork.com",
